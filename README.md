@@ -1,14 +1,30 @@
 # agent-skills-collection
 
-> A curated collection of reusable agent skills (SKILL.md) for release notes, migrations, security reviews, SEO and App Store audits.
+A curated collection of reusable agent skills (SKILL.md) for release notes, migrations, security reviews, SEO and App Store audits.
 
-**Status:** 🚧 Early stage — design and roadmap published, implementation in progress. Stars, issues and ideas welcome.
+> **Project status: planning. There is no working code in this repository yet.**
+> This README describes what the project will do. Nothing below can be installed or run today.
+> Features are ticked off in the checklist as they are built.
 
-## Why
+## What it is
 
-Good agent workflows live in people's heads or private notes. Skills make them repeatable and shareable.
+A collection of Markdown skills and scripts.
+
+**The problem it solves:** Good agent workflows live in people's heads or private notes. Skills make them repeatable and shareable.
+
+## Who it is for
+
+People who use AI coding agents and want proven, repeatable workflows instead of rewriting the same instructions.
+
+## How it will work
+
+1. Each skill is a folder with a SKILL.md file: when to use it, the steps to follow and any helper scripts.
+2. You copy the skills you want into your agent's skills directory.
+3. The agent loads a skill when a task matches it and follows the steps.
 
 ## Planned features
+
+Unticked items are not built yet.
 
 - [ ] Release-notes writer from git history
 - [ ] Dependency / framework migration helper
@@ -17,24 +33,17 @@ Good agent workflows live in people's heads or private notes. Skills make them r
 - [ ] iOS App Store pre-submit audit (common rejection reasons)
 - [ ] Template and guide for writing your own skill
 
-## Intended usage
+## Planned usage
 
-```
+This is the intended interface, shown so you can judge the design. **It does not work yet**, and names may change before the first release.
+
+```bash
 cp -r skills/release-notes <your-agent-skills-dir>/
 ```
 
-_The interface above is the target design and may change._
-
-## Roadmap
-
-1. Core implementation of the first feature set
-2. Examples and tests
-3. CI and first tagged release
-4. Docs and integrations
-
 ## Contributing
 
-Contributions are welcome. Open an issue to discuss an idea or pick an unchecked item from the feature list.
+Feedback on the design is the most useful contribution right now. Open an issue to suggest a feature, question an approach or describe your use case. Code contributions are welcome once the first version lands.
 
 ## License
 
