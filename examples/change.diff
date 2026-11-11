@@ -1,0 +1,40 @@
+diff --git a/app/settings.py b/app/settings.py
+index 3b1f2aa..9c4e7d1 100644
+--- a/app/settings.py
++++ b/app/settings.py
+@@ -10,6 +10,8 @@ DEBUG = False
+ DATABASE_HOST = os.environ["DATABASE_HOST"]
+ DATABASE_USER = os.environ["DATABASE_USER"]
+-DATABASE_PASSWORD = os.environ["DATABASE_PASSWORD"]
++DATABASE_PASSWORD = "tr0ub4dor-staging-pw"
++API_KEY = os.environ["PAYMENTS_API_KEY"]
++REPORTS_URL = "https://reports.internal.example.com"
+ 
+ ALLOWED_HOSTS = ["shop.example.com"]
+diff --git a/app/reports.py b/app/reports.py
+index 71c0d55..e2a9b10 100644
+--- a/app/reports.py
++++ b/app/reports.py
+@@ -22,9 +22,12 @@ def fetch_report(report_id):
+-    response = requests.get(url, timeout=10)
++    response = requests.get(url, timeout=10, verify=False)
+     return response.json()
+ 
+ 
+ def orders_for(customer_name):
+-    return db.execute("SELECT * FROM orders WHERE customer = %s", (customer_name,))
++    return db.execute("SELECT * FROM orders WHERE customer = '%s'" % customer_name)
++
++
++def export(path):
++    subprocess.run("tar czf /tmp/export.tgz " + path, shell=True)
+diff --git a/web/components/Comment.jsx b/web/components/Comment.jsx
+index 5d0aa13..b7f3c02 100644
+--- a/web/components/Comment.jsx
++++ b/web/components/Comment.jsx
+@@ -4,5 +4,5 @@ export function Comment({ comment }) {
+   return (
+-    <p>{comment.body}</p>
++    <p dangerouslySetInnerHTML={{ __html: comment.body }} />
+   );
+ }
